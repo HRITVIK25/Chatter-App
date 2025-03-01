@@ -43,7 +43,7 @@ export const signup = async (req,res) => {
             return res.status(400).json({message: "Invalid User"})
         }
     } catch (error) {
-        console.log("User signup error: ",error);
+        console.log("User signup error: ",error.message);
         res.status(500).json({message: "Internal Server Error"});
     }
 };
@@ -76,7 +76,7 @@ export const login = async(req,res) => {
         });
 
     } catch (error) {
-        console.log("User Login Error",error);
+        console.log("User Login Error",error.message);
         res.status(500).json({message: "Internal Server Error"});
     }
 };
@@ -86,7 +86,7 @@ export const logout = async (req,res) => {
         res.cookie("jwt","",{mxAge:0});
         res.status(200).json({message: "Logged out Successfully"})
     } catch (error) {
-        console.log("User Logout Error",error);
+        console.log("User Logout Error",error.message);
         res.status(500).json({message: "Internal Server Error"});
     }
 };
@@ -108,7 +108,7 @@ export const updateProfile = async (req,res) => {
 
         res.status(200),json({updatedUser})
     } catch (error) {
-        console.log("User update Error",error);
+        console.log("User update Error",error.message);
         res.status(500).json({message: "Internal Server Error"});
     }
 
