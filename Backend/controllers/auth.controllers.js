@@ -7,8 +7,8 @@ export const signup = async (req,res) => {
     const {fullName,email,password} = req.body
     try {
 
-        if(!(fullName || email || password)){
-            return res.status(400).json({message: "All fields are required."})
+        if (!fullName || !email || !password) {
+            return res.status(400).json({ message: "All fields are required." });
         }
 
         if (password.length < 6) {
@@ -51,10 +51,9 @@ export const signup = async (req,res) => {
 export const login = async(req,res) => {
     const {email,password} = req.body;
     try {
-        if(!(email || password)){
-            return res.status(401).json({message: "Please provide all fields"});
+        if (!email || !password) {
+            return res.status(400).json({ message: "Please provide all fields" });
         }
-
         const user = await User.findOne({email});
 
         if(!user){
@@ -83,7 +82,7 @@ export const login = async(req,res) => {
 
 export const logout = async (req,res) => {
     try {
-        res.cookie("jwt","",{mxAge:0});
+        res.cookie("jwt", "", { maxAge: 0 });
         res.status(200).json({message: "Logged out Successfully"})
     } catch (error) {
         console.log("User Logout Error",error.message);
@@ -106,7 +105,7 @@ export const updateProfile = async (req,res) => {
             profilePic: uploadResponse.secure_url
         },{new:true});
 
-        res.status(200),json({updatedUser})
+        res.status(200).json(updatedUser);
     } catch (error) {
         console.log("User update Error",error.message);
         res.status(500).json({message: "Internal Server Error"});

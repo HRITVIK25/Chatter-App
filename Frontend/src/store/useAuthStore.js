@@ -57,5 +57,18 @@ export const useAuthStore = create((set)=>({
         } finally {
             set({isLoggingIn:false});
         }
-    }
+    },
+
+    updateProfile: async (data) =>{
+        set({isUpdatingProfile:true})
+        try {
+            const res = await axiosInstance.put("/auth/update-profile",data);
+            set({authUser:res.data}); // set authUser with newly updated data containing new profile pic
+            toast.success("Profile picture added successfully");
+        }  catch (error) {
+            toast.error(error.response.data.message || "Image size is too large");
+        } finally {
+            set({isUpdatingProfile:false});
+        }
+    },
 }))
