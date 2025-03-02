@@ -9,9 +9,9 @@ const Navbar = () => {
   return (
     <header
       className="border-b border-base-300 fixed w-full top-0 z-40 
-    backdrop-blur-lg bg-base-100/80"
+      backdrop-blur-lg bg-base-100/80 h-16"
     >
-      <div className="container mx-auto px-4 h-16">
+      <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
           <div className="flex items-center gap-8">
             <Link
@@ -28,24 +28,24 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <Link
               to={"/settings"}
-              className={`
-              btn btn-sm gap-2 transition-colors
-              
-              `}
+              className="btn btn-sm gap-2 transition-colors"
             >
               <Settings className="w-4 h-4" />
               <span className="hidden sm:inline">Settings</span>
             </Link>
 
-            {authUser && ( // if authUser is there then show profile and logout button as well
+            {authUser && (
               <>
-                <Link to={"/profile"} className={`btn btn-sm gap-2`}>
-                  <User className="size-5" />
+                <Link to={"/profile"} className="btn btn-sm gap-2">
+                  <User className="w-5 h-5" />
                   <span className="hidden sm:inline">Profile</span>
                 </Link>
 
-                <button className="flex gap-2 items-center" onClick={logout}>
-                  <LogOut className="size-5" />
+                <button 
+                  className="btn btn-sm gap-2 text-error hover:bg-error/10" 
+                  onClick={logout}
+                >
+                  <LogOut className="w-5 h-5" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>
               </>
@@ -56,4 +56,10 @@ const Navbar = () => {
     </header>
   );
 };
+
+// Add a spacer component to prevent content overlap
+export const NavbarSpacer = () => {
+  return <div className="h-16"></div>;
+};
+
 export default Navbar;
