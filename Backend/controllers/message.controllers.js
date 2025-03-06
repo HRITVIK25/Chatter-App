@@ -1,5 +1,6 @@
 import Message from "../models/message.model.js";
 import User from "../models/user.model.js";
+import cloudinary from '../lib/cloudinary.js'
 
 export const getUserForSidebar = async (req, res) => {
     try {
@@ -21,8 +22,8 @@ export const getMessages = async (req, res) => {
 
         const messages = await Message.find({ 
             $or: [
-                { senderId: myId, recieverId: userToChatId }, // Case 1: I sent the message
-                { senderId: userToChatId, recieverId: myId }  // Case 2: I received the message
+                { senderId: myId, receiverId: userToChatId }, // Case 1: I sent the message
+                { senderId: userToChatId, receiverId: myId }  // Case 2: I received the message
             ]
         });
 
@@ -36,7 +37,7 @@ export const getMessages = async (req, res) => {
 export const sendMessage = async (req, res) => {
     try {
         const { text, image } = req.body; // Extract text and image from request body
-        const { id: recieverId } = req.params; // Get receiver's user ID from URL params
+        const { id: receiverId } = req.params; // Get receiver's user ID from URL params
         const senderId = req.user._id; // Get logged-in user's ID
 
         // Upload image to Cloudinary if provided
@@ -49,10 +50,12 @@ export const sendMessage = async (req, res) => {
         // Create a new message document
         const newMessage = new Message({
             senderId,
-            recieverId, // (Typo: Should be receiverId)
+            receiverId, 
             text,
             image: imageUrl,
         });
+
+        await newMessage.save();
 
         // TODO: Implement real-time messaging with Socket.io
 
