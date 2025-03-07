@@ -11,6 +11,10 @@ const io = new Server(server, {
     },
 });
 
+export function getRecieverSocketId(receiverId){
+    return userSocketMap[receiverId] // gets the corrosponding reciver id for the user id
+}
+
 // used to store online users
 const userSocketMap = {}; // {userId from db and socketId from socket} This object (userSocketMap) stores the mapping of user IDs from the database to their corresponding socket IDs.
 
