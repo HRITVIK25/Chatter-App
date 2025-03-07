@@ -4,9 +4,9 @@ import authRoutes from "../routes/auth.routes.js";
 import { connectDB } from "../lib/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import messageRoutes from '../routes/message.routes.js'
+import messageRoutes from "../routes/message.routes.js";
+import { app, server, io } from "../lib/socket.js";
 
-const app = express();
 const PORT = process.env.PORT;
 
 dotenv.config();
@@ -24,7 +24,7 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server running at port: " + PORT);
   connectDB();
-});
+}); // built a socket.io server on top of our server
