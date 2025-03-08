@@ -12,10 +12,6 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.0.9",
     "axios": "^1.8.1",
-<<<<<<< HEAD
-    "chatterapp": "file:..",
-=======
->>>>>>> d01ffeaf15323214f19a85442de89a743a222bff
     "lucide-react": "^0.477.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
