@@ -7,10 +7,14 @@ import cors from "cors";
 import messageRoutes from "../routes/message.routes.js";
 import { app, server, io } from "../lib/socket.js";
 
+<<<<<<< HEAD
 import path from "path";
 
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
+=======
+const PORT = process.env.PORT;
+>>>>>>> d01ffeaf15323214f19a85442de89a743a222bff
 
 dotenv.config();
 
@@ -27,6 +31,7 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
 
+<<<<<<< HEAD
 if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname,"../Frontend/dist")));
 
@@ -35,6 +40,8 @@ if(process.env.NODE_ENV === "production"){
   });
 }
 
+=======
+>>>>>>> d01ffeaf15323214f19a85442de89a743a222bff
 server.listen(PORT, () => {
   console.log("Server running at port: " + PORT);
   connectDB();
