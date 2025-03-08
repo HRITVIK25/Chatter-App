@@ -12,7 +12,6 @@ import path from "path";
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
-
 dotenv.config();
 
 app.use(express.json());
