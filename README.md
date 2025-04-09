@@ -2,7 +2,8 @@
 
 A full-stack real-time chat application built using the **MERN stack** with **Socket.io** integration for live messaging, user presence, and a modern UI powered by **TailwindCSS** and **DaisyUI**.
 
----
+link -https://chatter-app-gmzu.onrender.com/
+--- 
 
 ## 🛠 Tech Stack
 
